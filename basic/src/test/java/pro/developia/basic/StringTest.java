@@ -10,8 +10,8 @@ import java.util.List;
 public class StringTest {
     @Test
     void test() {
-        try (var jedisPool = new JedisPool("127.0.0.1", 6379, "","password")) {
-            try(Jedis jedis = jedisPool.getResource()) {
+        try (var jedisPool = new JedisPool("127.0.0.1", 6379, null, "password")) {
+            try (Jedis jedis = jedisPool.getResource()) {
                 jedis.set("users:300:email", "kim@fastcampus.co.kr");
                 jedis.set("users:300:name", "kim 00");
                 jedis.set("users:300:age", "100");
@@ -39,8 +39,8 @@ public class StringTest {
 
     @Test
     void pipeline() {
-        try (var jedisPool = new JedisPool("127.0.0.1", 6379, "","password")) {
-            try(Jedis jedis = jedisPool.getResource()) {
+        try (var jedisPool = new JedisPool("127.0.0.1", 6379, null, "password")) {
+            try (Jedis jedis = jedisPool.getResource()) {
                 Pipeline pipelined = jedis.pipelined();
                 pipelined.set("users:400:email", "greg@fastcampus.co.kr");
                 pipelined.set("users:400:name", "greg");
