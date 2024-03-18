@@ -1,8 +1,8 @@
 package pro.developia.cache.domain.service;
 
 
-import jakarta.persistence.Cacheable;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import pro.developia.cache.domain.entity.RedisHashUser;
@@ -11,6 +11,8 @@ import pro.developia.cache.domain.repository.RedisHashUserRepository;
 import pro.developia.cache.domain.repository.UserRepository;
 
 import java.time.Duration;
+
+import static pro.developia.cache.config.CacheConfig.CACHE1;
 
 
 @Service
@@ -47,8 +49,8 @@ public class UserService {
         return cachedUser;
     }
 
-//    @Cacheable(cacheNames = CACHE1, key = "'user:' + #id")
-//    public User getUser3(final Long id) {
-//        return userRepository.findById(id).orElseThrow();
-//    }
+    @Cacheable(cacheNames = CACHE1, key = "'user:' + #id")
+    public User getUser3(final Long id) {
+        return userRepository.findById(id).orElseThrow();
+    }
 }
