@@ -2,3 +2,4 @@ rootProject.name = 'spring-redis-study'
 
 include 'basic'
 include 'cache'
+include 'pubsub'
